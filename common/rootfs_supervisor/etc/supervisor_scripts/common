@@ -2,7 +2,8 @@
 
 set -e
 
-VERSION_INFO=$(curl -s https://version.home-assistant.io/dev.json)
+#VERSION_INFO=$(curl -s https://version.home-assistant.io/dev.json)
+VERSION_INFO=$(curl -s https://my-smart-homes.github.io/version-data/data.json)
 HA_ARCH=$(get_arch ha)
 QEMU_ARCH=$(get_arch qemu)
 DOCKER_TIMEOUT=30
@@ -81,13 +82,13 @@ function cleanup_lastboot() {
 }
 
 function build_supervisor() {
-    docker pull "ghcr.io/home-assistant/${HA_ARCH}-builder:dev"
+    docker pull "ghcr.io/my-smart-homes/${HA_ARCH}-builder:dev"
 
     docker run --rm \
         --privileged \
         -v /run/docker.sock:/run/docker.sock \
         -v "$(pwd):/data" \
-        "ghcr.io/home-assistant/${HA_ARCH}-builder:dev" \
+        "ghcr.io/my-smart-homes/${HA_ARCH}-builder:dev" \
             --generic latest \
             --target /data \
             --test \
