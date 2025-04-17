@@ -10,7 +10,7 @@ start_docker
 trap "stop_docker" ERR
 
 function build_supervisor() {
-    docker pull "ghcr.io/my-smart-homes/${HA_ARCH}-builder:dev"
+    docker pull "ghcr.io/smart-building-manager/${HA_ARCH}-builder:dev"
 #    cosign verify \
 #          --certificate-oidc-issuer https://token.actions.githubusercontent.com \
 #          --certificate-identity-regexp https://github.com/home-assistant/builder/.* \
@@ -20,7 +20,7 @@ function build_supervisor() {
         --privileged \
         -v /run/docker.sock:/run/docker.sock \
         -v "$(pwd):/data" \
-        "ghcr.io/my-smart-homes/${HA_ARCH}-builder:dev" \
+        "ghcr.io/smart-building-manager/${HA_ARCH}-builder:dev" \
             --generic latest \
             --target /data \
             --test \
@@ -47,7 +47,7 @@ function run_supervisor() {
         -e SUPERVISOR_NAME=hassio_supervisor \
         -e SUPERVISOR_DEV=1 \
         -e SUPERVISOR_MACHINE="qemu${QEMU_ARCH}" \
-        "ghcr.io/my-smart-homes/${HA_ARCH}-hassio-supervisor:latest"
+        "ghcr.io/smart-building-manager/${HA_ARCH}-hassio-supervisor:latest"
 }
 
 

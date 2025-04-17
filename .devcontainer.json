@@ -1,4 +1,4 @@
 {
-	"name": "my-smart-homes/devcontainer",
+	"name": "smart-building-manager/devcontainer",
 	"image": "mcr.microsoft.com/devcontainers/base:bookworm"
 }
